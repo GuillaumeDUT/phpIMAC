@@ -34,8 +34,13 @@
 
     }
     $array = Array();
+    echo "Render Movie List avec pour paramètre 1980 et Science Fiction<br/";
     renderMovieList($movies,1980,"Science Fiction");
-    /*foreach($movies as $elt){
+    
+    
+    echo "<br/> Première aprtie de l'exo";
+    
+    foreach($movies as $elt){
       //var_dumpt($elt);
       echo "<ul>
         <li>".$elt['title']." (";
@@ -58,7 +63,7 @@
         <li> Réalisateur : ".$elt['director']."</ul>
         </ul>";
     }
-*/
+
     
     ?>
   </body>
