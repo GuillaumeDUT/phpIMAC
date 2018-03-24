@@ -1,0 +1,27 @@
+*{margin:0;padding:0;color:white;font-family:sans-serif;}
+body{
+  background: #2a1010;
+}
+h1{
+  margin:auto;
+  text-align: center;
+  margin-bot:200px;
+}
+a{
+  text-decoration: none;
+}
+
+.castWrapper{
+  width:1000px;
+  margin:auto;
+}
+.castMember{
+  text-align: center;
+  display:inline-block;
+  width:500px;
+  height: 50px;
+  line-height: 50px;
+}
+input{
+  color:black ;
+}

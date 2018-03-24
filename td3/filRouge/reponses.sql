@@ -39,6 +39,7 @@ AND country.code = movie.idCountry
 AND country.name = "France"
 AND cast.firstname = "Élodie"
 AND cast.lastname = "Deshayes"
+
 /* f */
 SELECT DISTINCT cast.firstname, cast.lastname,actor.name FROM cast,actor,director,movie
 WHERE cast.id = actor.idActor
@@ -71,11 +72,11 @@ WHERE movie.id = (SELECT idMovie FROM director
                   GROUP BY idMovie 
                   HAVING COUNT(idMovie)>1)
 AND movie.id = director.idMovie
-/* f */
 
+/* f */
 SELECT movie.title,genre.name,country.name,movie.releaseDate,cast.firstname,cast.lastname
 FROM actor,cast,country,director,genre,movie,moviegenre
-WHERE movie.id =moviegenre.idMovie
+WHERE movie.id = moviegenre.idMovie
 AND moviegenre.idGenre = genre.id
 AND cast.id = actor.idActor
 AND actor.idMovie = movie.id

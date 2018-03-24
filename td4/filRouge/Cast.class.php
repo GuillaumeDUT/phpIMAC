@@ -45,7 +45,7 @@ class Cast {
     if(($object = $stmt->fetch()) !== false){
       return $object;
     }else{
-      throw new Exception('id pas dans la base');
+      throw new Exception('L\'id n\'est pas dans la base');
     }
 
   }
@@ -117,7 +117,14 @@ class Cast {
 	 * @return array<Cast> liste d'instances de Cast
 	 */
   public static function getAll() {
-    // TO DO
+    $stmt = MyPDO::getInstance()->prepare("SELECT * FROM Cast ORDER BY lastname,firstname DESC");
+    $stmt->execute();
+    $stmt->setFetchMode(PDO::FETCH_CLASS, "Cast");
+    if(($object = $stmt->fetchAll()) !== false){
+      return $object;
+    }else{
+      throw new GetAllException('Erreur lors de la récupération du cast');
+    }
   }
 
   /**
@@ -128,6 +135,13 @@ class Cast {
 	 */
   public static function getDirectorsFromMovieId($idMovie) {
     // TO DO next : #04 Jointure Cast - Movie
+    $stmt = MyPDO::getInstance()->prepare("SELECT * FROM cast,director,movie WHERE cast.id = director.idDirector AND director.idMovie = movie.id AND movie.id=?");
+    $stmt->execute(Array($idMovie));
+    if(($object = $stmt->fetchAll()) !== false){
+      return $object;
+    }else{
+      throw new GetAllException('Erreur lors de la récupération du cast');
+    }
   }
 
   /**
@@ -138,6 +152,13 @@ class Cast {
 	 */
   public static function getActorsFromMovieId($idMovie) {
     // TO DO next : #04 Jointure Cast - Movie
+    $stmt = MyPDO::getInstance()->prepare("SELECT * FROM cast,actor,movie WHERE cast.id =actor.idActor AND actor.idMovie = movie.id AND movie.id=?");
+    $stmt->execute(Array($idMovie));
+    if(($object = $stmt->fetchAll()) !== false){
+      return $object;
+    }else{
+      throw new GetAllException('Erreur lors de la récupération du cast');
+    }
   }
 
 }
